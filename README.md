@@ -147,6 +147,12 @@ kaleid/
 └── public/              # Static assets
 ```
 
+## 📷 Screenshots
+
+<img width="1585" height="1016" alt="image" src="https://github.com/user-attachments/assets/ea0047b0-3dec-47eb-a677-a8b53db3d5b0" />
+<img width="1239" height="749" alt="image" src="https://github.com/user-attachments/assets/6b5f8219-0b9e-497d-ba9a-1ac100f826c9" />
+<img width="1581" height="1006" alt="image" src="https://github.com/user-attachments/assets/6af17790-374f-4f01-bab0-15792cefe44e" />
+
 ## 🎯 Roadmap
 
 ### Phase 1 (MVP) ✅ Complete
