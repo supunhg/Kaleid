@@ -1,7 +1,7 @@
 {
   "name": "kaleid",
   "version": "1.0.0",
-  "description": "",
+  "description": "Modern glitch animation platform for creating, customizing, and exporting stunning glitch effects on images",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -10,9 +10,27 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "glitch",
+    "art",
+    "animation",
+    "next.js",
+    "canvas",
+    "webgl",
+    "image-processing",
+    "effects",
+    "creative-coding"
+  ],
+  "author": "Supun Hewagamage <https://github.com/supunhg>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supunhg/Kaleid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/supunhg/Kaleid/issues"
+  },
+  "homepage": "https://github.com/supunhg/Kaleid#readme",
   "dependencies": {
     "@supabase/supabase-js": "^2.86.0",
     "@types/node": "^24.10.1",

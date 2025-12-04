@@ -200,7 +200,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-ISC
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Support
 
@@ -208,4 +208,4 @@ If you find Kaleid useful, consider supporting the project on our [Supporters pa
 
 ---
 
-Built with ❤️ using Next.js and Vercel
+Built with ❤️ by [Supun Hewagamage](https://github.com/supunhg) using Next.js and Vercel
