@@ -30,9 +30,6 @@ const defaultConfig: GlitchConfig = {
     displacementStrength: 0.3,
     vhsIntensity: 0.4,
     datamoshAmount: 0.2,
-    contrast: 1.0,
-    brightness: 0.0,
-    saturation: 1.0,
   },
 };
 

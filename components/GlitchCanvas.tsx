@@ -32,6 +32,12 @@ export default function GlitchCanvas() {
       if (canvasRef.current) {
         canvasRef.current.width = img.width;
         canvasRef.current.height = img.height;
+        
+        // Draw image immediately on load
+        const ctx = canvasRef.current.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0);
+        }
       }
     };
     img.src = config.imageSource;
@@ -300,37 +306,7 @@ export default function GlitchCanvas() {
     }
   };
 
-  const applyColorGrade = (imageData: ImageData, params: { contrast?: number; brightness?: number; saturation?: number }) => {
-    const data = imageData.data;
-    const { contrast = 1, brightness = 0, saturation = 1 } = params;
 
-    for (let i = 0; i < data.length; i += 4) {
-      let r = data[i];
-      let g = data[i + 1];
-      let b = data[i + 2];
-
-      // Apply brightness
-      r += brightness * 255;
-      g += brightness * 255;
-      b += brightness * 255;
-
-      // Apply contrast
-      r = ((r / 255 - 0.5) * contrast + 0.5) * 255;
-      g = ((g / 255 - 0.5) * contrast + 0.5) * 255;
-      b = ((b / 255 - 0.5) * contrast + 0.5) * 255;
-
-      // Apply saturation
-      const gray = 0.2989 * r + 0.5870 * g + 0.1140 * b;
-      r = gray + (r - gray) * saturation;
-      g = gray + (g - gray) * saturation;
-      b = gray + (b - gray) * saturation;
-
-      // Clamp values
-      data[i] = Math.max(0, Math.min(255, r));
-      data[i + 1] = Math.max(0, Math.min(255, g));
-      data[i + 2] = Math.max(0, Math.min(255, b));
-    }
-  };
 
   // Animation loop
   useEffect(() => {
@@ -405,14 +381,6 @@ export default function GlitchCanvas() {
 
       if (config.shaderModules.includes('datamosh') && config.params.datamoshAmount) {
         applyDatamosh(imageData, config.params.datamoshAmount);
-      }
-
-      if (config.shaderModules.includes('colorGrade')) {
-        applyColorGrade(imageData, {
-          contrast: config.params.contrast,
-          brightness: config.params.brightness,
-          saturation: config.params.saturation,
-        });
       }
 
       if (config.shaderModules.includes('chromaticAberration') && config.params.aberrationStrength) {

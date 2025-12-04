@@ -12,7 +12,6 @@ const availableModules: { id: ShaderModule; name: string; emoji: string }[] = [
   { id: 'displacement', name: 'Displacement', emoji: '🌊' },
   { id: 'vhsDistortion', name: 'VHS Distortion', emoji: '📼' },
   { id: 'datamosh', name: 'Datamosh', emoji: '💥' },
-  { id: 'colorGrade', name: 'Color Grade', emoji: '🎨' },
   { id: 'chromaticAberration', name: 'Chromatic', emoji: '🔴🔵' },
 ];
 

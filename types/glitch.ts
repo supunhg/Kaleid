@@ -23,8 +23,7 @@ export type ShaderModule =
   | 'glitchBlocks'
   | 'displacement'
   | 'vhsDistortion'
-  | 'datamosh'
-  | 'colorGrade';
+  | 'datamosh';
 
 export interface GlitchParams {
   noiseIntensity?: number;
@@ -38,9 +37,6 @@ export interface GlitchParams {
   displacementStrength?: number;
   vhsIntensity?: number;
   datamoshAmount?: number;
-  contrast?: number;
-  brightness?: number;
-  saturation?: number;
 }
 
 // User & Database Types
