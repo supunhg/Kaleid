@@ -5,9 +5,10 @@ import { useGlitchStore } from '@/lib/store';
 import ImageUploader from './ImageUploader';
 import EffectToggler from './EffectToggler';
 import HistoryControls from './HistoryControls';
+import SavedPresetsList from './SavedPresetsList';
 import { glitchPresets } from '@/lib/presets';
 import { GlitchExporter, downloadBlob } from '@/lib/export';
-import SaveModal from './SaveModal';
+import LocalSaveModal from './LocalSaveModal';
 import ShareModal from './ShareModal';
 import { SuccessMessage } from './LoadingStates';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
@@ -92,7 +93,7 @@ export default function ControlPanel() {
         key: 's',
         ctrl: true,
         action: () => setShowSaveModal(true),
-        description: 'Save to Gallery',
+        description: 'Save Preset Locally',
       },
       {
         key: '1',
@@ -178,9 +179,9 @@ export default function ControlPanel() {
           <div>
             <ImageUploader />
             
-            {/* Presets */}
+            {/* Built-in Presets */}
             <div className="mt-4">
-              <label className="block text-xs font-medium text-gray-400 mb-2">Quick Presets</label>
+              <label className="block text-xs font-medium text-gray-400 mb-2">Built-in Presets</label>
               <div className="grid grid-cols-2 gap-2">
                 {glitchPresets.slice(0, 6).map((preset) => (
                   <button
@@ -192,6 +193,11 @@ export default function ControlPanel() {
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* Saved Presets */}
+            <div className="mt-4">
+              <SavedPresetsList />
             </div>
             
             <div className="mt-4">
@@ -418,7 +424,7 @@ export default function ControlPanel() {
           disabled={!config.imageSource}
           className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg font-bold text-sm hover:border-yellow-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          🌟 Save to Gallery
+          💾 Save Preset Locally
         </button>
         <button
           onClick={() => setShowShareModal(true)}
@@ -429,13 +435,9 @@ export default function ControlPanel() {
       </div>
     </div>
 
-    <SaveModal
+    <LocalSaveModal
       isOpen={showSaveModal}
       onClose={() => setShowSaveModal(false)}
-      onSuccess={() => {
-        setSuccessMessage('Saved to gallery successfully!');
-        setTimeout(() => setSuccessMessage(''), 3000);
-      }}
     />
     <ShareModal
       isOpen={showShareModal}

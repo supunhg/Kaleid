@@ -13,7 +13,7 @@ A Next.js 15 web application for creating, customizing, and exporting stunning g
 - Modern tabbed control panel with efficient spacing
 - Preset system with instant effect loading
 - Live preview with play/pause controls
-- **User authentication with Supabase**
+- **Local preset saving (browser storage)**
 - **Image and video export (PNG, WebM)**
 - **WebGL/Three.js renderer with custom shaders**
 - **Beta notification banner**
@@ -39,7 +39,7 @@ A Next.js 15 web application for creating, customizing, and exporting stunning g
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/supunhg/Kaleid.git
 cd kaleid
 ```
 
@@ -48,16 +48,7 @@ cd kaleid
 npm install
 ```
 
-3. Set up environment variables:
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and add your Supabase credentials:
-- `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase project URL
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase anonymous key
-
-4. Run the development server:
+3. Run the development server:
 ```bash
 npm run dev
 ```
@@ -75,9 +66,9 @@ npm run dev
 - **Modern Tabbed UI**: Organized controls with Image, Effects, and Settings tabs
 - **Interactive Controls**: Fine-tune animations with intuitive sliders
 - **Export Functionality**: Download as PNG images or WebM videos
-- **User Authentication**: Sign up and save your creations with Supabase
+- **Local Preset Saving**: Save up to 50 presets in browser localStorage
+- **Saved Presets Library**: Quick access to your saved presets
 - **Public Gallery**: Share and discover community creations
-- **Save to Gallery**: Store your creations in the cloud
 - **Share Presets**: Generate shareable links with URL parameters
 - **Keyboard Shortcuts**: Ctrl+E (export), Ctrl+S (save), H (share), 1/2/3 (tabs), Ctrl+Z (undo), Ctrl+Shift+Z (redo), P (performance stats)
 - **History/Undo System**: 50-state history with undo/redo buttons and keyboard shortcuts
@@ -100,10 +91,10 @@ npm run dev
 - **Canvas API**: Real-time pixel manipulation with `ImageData`
 - **WebGL**: Three.js 0.181.2 with custom GLSL shaders
 - **Animation**: Framer Motion 12.23.25, GSAP 3.13.0
-- **Database**: Supabase 2.86.0 (PostgreSQL with realtime)
-- **Authentication**: Supabase Auth
+- **Storage**: Browser localStorage (no database, privacy-first)
 - **Video Export**: MediaRecorder API (WebM)
 - **URL Sharing**: Base64 encoding for preset sharing
+- **Analytics**: Vercel Analytics
 - **Deployment**: Vercel-ready
 
 ## 📁 Project Structure
@@ -168,7 +159,7 @@ kaleid/
 - [x] Tabbed control interface
 - [x] Supporters page
 - [x] Live homepage previews
-- [x] User authentication (Supabase)
+- [x] Local preset saving (localStorage)
 - [x] Export functionality (PNG/WebM)
 - [x] WebGL/Three.js integration
 - [x] Beta notification banner
@@ -186,8 +177,7 @@ kaleid/
 - [ ] GIF export (requires gif.js integration)
 
 ### Phase 3 (Community & Polish)
-- [x] Supabase authentication
-- [ ] User profiles and saved creations
+- [ ] User preset sharing platform
 - [x] Public gallery foundation
 - [ ] Gallery filters and search
 - [ ] Social sharing features

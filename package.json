@@ -1,7 +1,7 @@
 {
   "name": "kaleid",
   "version": "1.0.0",
-  "description": "Modern glitch animation platform for creating, customizing, and exporting stunning glitch effects on images",
+  "description": "Modern glitch animation platform - Create, customize, and export stunning glitch effects. Privacy-first with local browser storage.",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -32,9 +32,9 @@
   },
   "homepage": "https://github.com/supunhg/Kaleid#readme",
   "dependencies": {
-    "@supabase/supabase-js": "^2.86.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
+    "@vercel/analytics": "^1.6.1",
     "autoprefixer": "^10.4.22",
     "framer-motion": "^12.23.25",
     "gsap": "^3.13.0",
