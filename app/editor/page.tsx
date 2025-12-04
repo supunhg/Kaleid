@@ -5,7 +5,7 @@ import BetaBanner from '@/components/BetaBanner';
 import ControlPanel from '@/components/ControlPanel';
 import PreviewCanvas from '@/components/PreviewCanvas';
 import PerformanceStats from '@/components/PerformanceStats';
-import { useCanvasPerformanceMonitor } from '@/components/GlitchCanvas';
+import { getPerformanceMonitor } from '@/components/GlitchCanvas';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, Suspense } from 'react';
 import { useGlitchStore } from '@/lib/store';
@@ -13,7 +13,7 @@ import { useGlitchStore } from '@/lib/store';
 function EditorContent() {
   const searchParams = useSearchParams();
   const { setConfig } = useGlitchStore();
-  const performanceMonitor = useCanvasPerformanceMonitor();
+  const performanceMonitor = getPerformanceMonitor();
 
   useEffect(() => {
     // Load config from URL if present

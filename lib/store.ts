@@ -40,7 +40,17 @@ export const useGlitchStore = create<GlitchStore>((set, get) => ({
   config: defaultConfig,
   setConfig: (newConfig) => {
     const prevConfig = get().config;
-    const nextConfig = { ...prevConfig, ...newConfig };
+    
+    // Deep merge params to preserve default values
+    const nextConfig = {
+      ...prevConfig,
+      ...newConfig,
+      params: {
+        ...defaultConfig.params,
+        ...prevConfig.params,
+        ...(newConfig.params || {}),
+      },
+    };
     
     // Add to history before updating
     const historyStore = useHistoryStore.getState();

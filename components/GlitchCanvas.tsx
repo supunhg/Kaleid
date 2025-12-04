@@ -4,11 +4,20 @@ import { useEffect, useRef, useState } from 'react';
 import { useGlitchStore } from '@/lib/store';
 import { PerformanceMonitor, throttle } from '@/lib/performance';
 
+// Singleton performance monitor
+let globalPerformanceMonitor: PerformanceMonitor | null = null;
+
+export function getPerformanceMonitor(): PerformanceMonitor {
+  if (!globalPerformanceMonitor) {
+    globalPerformanceMonitor = new PerformanceMonitor();
+  }
+  return globalPerformanceMonitor;
+}
+
 export default function GlitchCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sourceImageRef = useRef<HTMLImageElement | null>(null);
   const animationFrameRef = useRef<number | undefined>(undefined);
-  const performanceMonitorRef = useRef(new PerformanceMonitor());
   const { config } = useGlitchStore();
   const [isAnimating, setIsAnimating] = useState(true);
 
@@ -385,7 +394,7 @@ export default function GlitchCanvas() {
       ctx.putImageData(imageData, 0, 0);
 
       // Record performance metrics
-      performanceMonitorRef.current.recordFrame();
+      getPerformanceMonitor().recordFrame();
 
       if (config.loop || progress < 1) {
         animationFrameRef.current = requestAnimationFrame(animate);
@@ -419,10 +428,4 @@ export default function GlitchCanvas() {
       )}
     </div>
   );
-}
-
-// Export the performance monitor for use in PerformanceStats component
-export function useCanvasPerformanceMonitor() {
-  const monitorRef = useRef(new PerformanceMonitor());
-  return monitorRef.current;
 }
