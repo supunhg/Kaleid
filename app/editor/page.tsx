@@ -7,10 +7,10 @@ import PreviewCanvas from '@/components/PreviewCanvas';
 import PerformanceStats from '@/components/PerformanceStats';
 import { useCanvasPerformanceMonitor } from '@/components/GlitchCanvas';
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useGlitchStore } from '@/lib/store';
 
-export default function EditorPage() {
+function EditorContent() {
   const searchParams = useSearchParams();
   const { setConfig } = useGlitchStore();
   const performanceMonitor = useCanvasPerformanceMonitor();
@@ -27,10 +27,9 @@ export default function EditorPage() {
       }
     }
   }, [searchParams, setConfig]);
+
   return (
-    <div className="min-h-screen bg-black flex flex-col">
-      <Navigation />
-      <BetaBanner />
+    <>
       <div className="flex-1 flex overflow-hidden">
         {/* Left Sidebar - Controls */}
         <ControlPanel />
@@ -41,6 +40,22 @@ export default function EditorPage() {
         {/* Performance Stats */}
         <PerformanceStats monitor={performanceMonitor} />
       </div>
+    </>
+  );
+}
+
+export default function EditorPage() {
+  return (
+    <div className="min-h-screen bg-black flex flex-col">
+      <Navigation />
+      <BetaBanner />
+      <Suspense fallback={
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-gray-500">Loading editor...</div>
+        </div>
+      }>
+        <EditorContent />
+      </Suspense>
     </div>
   );
 }
