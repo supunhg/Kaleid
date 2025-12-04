@@ -167,6 +167,35 @@ export default function GlitchCanvas() {
     }
   };
 
+  const applyChromaticAberration = (imageData: ImageData, strength: number) => {
+    const data = imageData.data;
+    const width = imageData.width;
+    const height = imageData.height;
+    const tempData = new Uint8ClampedArray(data);
+    const offset = Math.floor(strength * 5);
+
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const idx = (y * width + x) * 4;
+        
+        // Red channel - shift right
+        if (x + offset < width) {
+          const sourceIdx = (y * width + (x + offset)) * 4;
+          data[idx] = tempData[sourceIdx];
+        }
+        
+        // Green channel - no shift (center)
+        data[idx + 1] = tempData[idx + 1];
+        
+        // Blue channel - shift left
+        if (x - offset >= 0) {
+          const sourceIdx = (y * width + (x - offset)) * 4;
+          data[idx + 2] = tempData[sourceIdx + 2];
+        }
+      }
+    }
+  };
+
   const applyDisplacement = (imageData: ImageData, strength: number, progress: number) => {
     const data = imageData.data;
     const width = imageData.width;
@@ -388,6 +417,10 @@ export default function GlitchCanvas() {
           brightness: config.params.brightness,
           saturation: config.params.saturation,
         });
+      }
+
+      if (config.shaderModules.includes('chromaticAberration') && config.params.aberrationStrength) {
+        applyChromaticAberration(imageData, config.params.aberrationStrength);
       }
 
       // Put modified image data back
