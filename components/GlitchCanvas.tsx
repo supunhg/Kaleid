@@ -394,10 +394,6 @@ export default function GlitchCanvas() {
         }
       }
 
-      if (config.params.colorShift && config.params.colorShift > 0) {
-        applyColorShift(imageData, config.params.colorShift * Math.abs(Math.sin(progress * Math.PI * 4)));
-      }
-
       // New advanced effects
       if (config.shaderModules.includes('displacement') && config.params.displacementStrength) {
         applyDisplacement(imageData, config.params.displacementStrength, progress);
